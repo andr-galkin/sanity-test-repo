@@ -1,0 +1,1 @@
+export const randomNumberGenerate = (array: Array<[]>) => Math.floor(Math.random() * array.length);
