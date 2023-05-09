@@ -23,7 +23,13 @@ const RpsRandom = ({ data, setRandomOption }) => {
     } else if (text === "Scissors") {
       return <Scissors />;
     } else {
-      return "";
+      return <Image
+          src="/Images/rock.png"
+          width={70}
+          height={32}
+          className="h-[70px] rounded-md"
+          alt="rock"
+      />;
     }
   };
 
@@ -35,16 +41,7 @@ const RpsRandom = ({ data, setRandomOption }) => {
         }  absolute text-[white] cursor-pointer`}
       >
         {currentImage(data.list[randomIndex].title)}
-        {data.list[randomIndex].title === "Rock" && (
-          <Image
-            src="/Images/rock.png"
-            width={70}
-            height={32}
-            className="h-[70px] rounded-md"
-            alt="rock"
-          />
-        )}
-        <span className="">{data.list[randomIndex].title}</span>
+        <span>{data.list[randomIndex].title}</span>
       </span>
     </div>
   );

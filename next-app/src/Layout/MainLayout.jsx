@@ -1,6 +1,9 @@
 import React from "react";
 
 const MainLayout = ({ text, additionalClasses = "", children}) => {
+
+
+
   return (
     <div className="flex justify-center h-screen items-center flex-col">
       <h1

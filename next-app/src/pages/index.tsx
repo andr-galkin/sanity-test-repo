@@ -1,31 +1,27 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import MainLayout from "@/Layout/MainLayout";
+import { Button } from "@/components/Button";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const router = useRouter();
-  const [showText, setShowText] = useState<boolean>(true);
+  const [cursorXY, setCursorXY] = useState({ x: -100, y: -100 });
 
-  const onMouseEnter = () => {
-    setShowText(false);
-  };
-  const onMouseleave = () => {
-    setShowText(true);
-  };
+  // useEffect(() => {
+  //   const moveCursor = (e: any) => {
+  //     const x = e.clientX - 16;
+  //     const y = e.clientY - 16;
+  //     setCursorXY({ x, y });
+  //   };
+  //   window.addEventListener("mousemove", moveCursor);
+  //   return () => {
+  //     window.removeEventListener("mousemove", moveCursor);
+  //   };
+  // }, []);
 
   return (
-    <MainLayout
-      text="WELCOME!"
-      additionalClasses={`${!showText && "opacity-20"} text-9xl`}
-    >
-      <button
-        className="bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 animate-main w-[200px] text-[white] rounded-[5px] h-12"
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseleave}
-        onClick={() => router.push("/portfolio/rps")}
-      >
-        Next
-      </button>
+    <MainLayout text="WELCOME!" additionalClasses="text-9xl">
+      <Button onPush={() => router.push("/portfolio/rps")} text="Next" />
     </MainLayout>
   );
 }

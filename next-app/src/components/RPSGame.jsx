@@ -3,7 +3,7 @@ import RpsGameItems from "@/components/RpsGameItems";
 import RpsRandom from "@/components/RpsRandom";
 import { rms } from "../../functions/rms";
 import WinnerModal from "@/components/WinnerModal";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 const RpsGame = ({ data }) => {
   const router = useRouter();
@@ -17,7 +17,7 @@ const RpsGame = ({ data }) => {
   const [createChoice, setCreateChoice] = useState(false);
   const [winner, setWinner] = useState("");
   const [showResult, setShowResult] = useState(false);
-  const [gameCounter, setGameCounter] = useState(0)
+  const [gameCounter, setGameCounter] = useState(0);
 
   const handleResetValues = () => {
     setTimer(2);
@@ -28,9 +28,7 @@ const RpsGame = ({ data }) => {
     setWinner("");
     setShowResult(false);
   };
-  const startTimer = () => {
-    setGameStart(true);
-  };
+  const startTimer = () => setGameStart(true);
 
   useEffect(() => {
     const counter =
@@ -39,9 +37,7 @@ const RpsGame = ({ data }) => {
   }, [timer, gameStart]);
 
   useEffect(() => {
-    if (timer === 0) {
-      setShowGame(true);
-    }
+    if (timer === 0) setShowGame(true);
   }, [timer]);
 
   const handleCurrentOption = (event) => {
@@ -57,21 +53,16 @@ const RpsGame = ({ data }) => {
   };
 
   useEffect(() => {
-    if (showResult) {
-      setWinner(rms(currentOption.user, currentOption.random));
-    }
+    if (showResult) setWinner(rms(currentOption.user, currentOption.random));
   }, [showResult]);
 
   const handleNextStep = (info) => {
-    const currentIndex = info[0]
+    const currentIndex = info[0];
     if (currentIndex === -1 || currentIndex === 0) {
       handleResetValues();
-      setGameCounter(prevState => prevState + 1)
-    } else {
-        router.push("/portfolio/home")
-    }
+      setGameCounter((prevState) => prevState + 1);
+    } else router.push("/portfolio/home");
   };
-
 
   return (
     <div className="flex w-full justify-between h-screen">
@@ -110,7 +101,13 @@ const RpsGame = ({ data }) => {
       {createChoice && (
         <RpsRandom data={data} setRandomOption={handleRandomOption} />
       )}
-      {showResult && <WinnerModal winner={winner} onClick={handleNextStep} gameCounter={gameCounter}/>}
+      {showResult && (
+        <WinnerModal
+          winner={winner}
+          onClick={handleNextStep}
+          gameCounter={gameCounter}
+        />
+      )}
     </div>
   );
 };

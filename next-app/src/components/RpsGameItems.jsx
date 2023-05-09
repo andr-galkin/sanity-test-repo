@@ -29,13 +29,9 @@ const RpsGameItems = ({
   }, [currentOption]);
 
   const currentImage = (text) => {
-    if (text === "Paper") {
-      return <Paper />;
-    } else if (text === "Scissors") {
-      return <Scissors />;
-    } else {
-      return "";
-    }
+    if (text === "Paper") return <Paper />;
+    else if (text === "Scissors") return <Scissors />;
+    else return "";
   };
 
   return (
